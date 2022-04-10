@@ -24,7 +24,73 @@ $ bundle add pg
 
 ## Usage
 
-TBC
+Let's create a simple Movie model to load and save our favorite movies. Add the file `models/movie.rb`:
+
+```rb
+class Movie < ApplicationRecord
+  validates :title, presence: true, uniqueness: { case_insensitive: true }
+
+  def uppercase_title
+    title.upcase
+  end
+end
+```
+
+Then add a new migration for the Movie model.
+
+```sh
+$ bin/bridgetown db:new_migration name=create_movies
+```
+
+That will create a new migration file in `db/migrate`. Edit the file so it looks like this:
+
+```ruby
+class CreateMovies < ActiveRecord::Migration[7.0]
+  def change
+    create_table :movies do |t|
+      t.string :title, null: false
+      t.string :director
+      t.integer :year
+
+      t.timestamps
+    end
+  end
+end
+```
+
+Awesome, now let's create the database and run the migration!
+
+```sh
+$ bin/bridgetown db:create
+$ bin/bridgetown db:migrate
+```
+
+If all goes well, the database should be created, the migration run, a new `db/schema.rb` saved, and schema annotations added to the top of `models/movie.rb`!
+
+Let's try it out in the Bridgetown console.
+
+```sh
+$ bin/bridgetown console
+```
+
+```ruby
+> Movie.count
+0
+> Movie.create(title: "Free Guy", director: "Shawn Levy", year: "2021") 
+> Movie.count
+1
+> Movie.last
+#<Movie:0x0000000109e26378> {
+          :id => 1,
+       :title => "Free Guy",
+    :director => "Shawn Levy",
+        :year => 2021,
+  :created_at => 2022-03-12 23:24:28.98137 UTC,
+  :updated_at => 2022-03-12 23:24:28.98137 UTC
+}
+```
+
+You're ready to roll to take full advantage of ActiveRecord database models in your Bridgetown site!
 
 ## Testing
 
