@@ -1,5 +1,7 @@
 # Bridgetown ActiveRecord plugin
 
+**NOTE:** currently waiting on a bugfix in Bridgetown itself before getting the green light…coming very soon!
+
 ## Installation
 
 It's recommended you run our automation script to set up your project to support ActiveRecord and DB models:
