@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
 require "bridgetown"
-require "bridgetown-activerecord/builder"
+require "bridgetown-activerecord/initializer"
