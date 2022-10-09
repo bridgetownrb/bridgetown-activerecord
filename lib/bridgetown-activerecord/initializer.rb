@@ -20,6 +20,8 @@ module BridgetownActiveRecord
 end
 
 Bridgetown.initializer :"bridgetown-activerecord" do |config|
-  ActiveRecord::Base.establish_connection BridgetownActiveRecord.db_configuration(config)[Bridgetown.environment]
+  ActiveRecord::Base.establish_connection(
+    BridgetownActiveRecord.db_configuration(config)[Bridgetown.environment]
+  )
   ActiveRecord::Base.logger = BridgetownActiveRecord.log_writer
 end
