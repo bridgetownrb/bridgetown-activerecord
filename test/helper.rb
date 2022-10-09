@@ -4,6 +4,9 @@ require "minitest/autorun"
 require "minitest/reporters"
 require "shoulda"
 require "bridgetown"
+
+Bridgetown.begin!
+
 require File.expand_path("../lib/bridgetown-activerecord", __dir__)
 
 Bridgetown.logger.log_level = :error

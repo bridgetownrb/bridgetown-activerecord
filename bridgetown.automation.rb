@@ -62,7 +62,9 @@ append_to_file "bridgetown.config.yml" do
   YML
 end
 
-insert_into_file "Rakefile", "BridgetownActiveRecord.load_tasks\n", :after => "Bridgetown.load_tasks\n"
+insert_into_file "Rakefile", "require \"bridgetown-activerecord\"\nBridgetownActiveRecord.load_tasks\n", :after => "Bridgetown.load_tasks\n"
+
+# TODO: add to initializer !!!
 
 say_status :active_record, "The plugin has been configured. For usage help visit:"
 say_status :active_record, "https://github.com/bridgetownrb/bridgetown-activerecord/blob/main/README.md"

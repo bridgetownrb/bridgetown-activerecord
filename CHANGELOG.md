@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-- ...
+## [2.0.0] - 2022-10-08
+
+- Upgrade to initializers system in Bridgetown 1.2
 
 ## 1.0.0 - 2022-04-11
 
