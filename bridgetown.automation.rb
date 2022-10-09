@@ -1,5 +1,5 @@
-add_bridgetown_plugin "bridgetown-activerecord"
-run "bundle add annotate -g development", abort_on_failure: false
+add_gem "bridgetown-activerecord"
+add_gem "annotate", group: :development
 
 # TODO:
 #dboptions = ["postgresql", "mysql", "vanilla"]
@@ -50,21 +50,20 @@ create_file ".standalone_migrations" do
   YML
 end
 
-append_to_file "bridgetown.config.yml" do
-  <<~YML
-
-    autoload_paths:
-      - path: models
-        eager: true
-
-    autoloader_collapsed_paths:
-      - models/concerns
-  YML
-end
-
 insert_into_file "Rakefile", "require \"bridgetown-activerecord\"\nBridgetownActiveRecord.load_tasks\n", :after => "Bridgetown.load_tasks\n"
 
-# TODO: add to initializer !!!
+ruby_configure "Support for autoloading models" do
+  <<~RUBY
+    config.autoload_paths << {
+      path: "models",
+      eager: true
+    }
+
+    config.autoloader_collapsed_paths << "models/concerns"
+  RUBY
+end
+
+add_initializer :"bridgetown-activerecord"
 
 say_status :active_record, "The plugin has been configured. For usage help visit:"
 say_status :active_record, "https://github.com/bridgetownrb/bridgetown-activerecord/blob/main/README.md"
