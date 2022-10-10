@@ -1,10 +1,10 @@
-# Bridgetown ActiveRecord plugin
+# Bridgetown Active Record plugin
 
-**NOTE:** currently waiting on a bugfix in Bridgetown itself before getting the green light…coming very soon!
+This plugin adds Active Record support to Bridgetown sites (v1.2 or higher). You can pull data from a database (currently PostgreSQL is officially supported) during a static build or during server requests (or both!) and use many of the features you know and love from Active Record in Rails—including migrations!
 
 ## Installation
 
-It's recommended you run our automation script to set up your project to support ActiveRecord and DB models:
+It's recommended you run our automation script to set up your project to support Active Record and DB models:
 
 ```shell
 $ bin/bridgetown apply https://github.com/bridgetownrb/bridgetown-activerecord
@@ -13,7 +13,7 @@ $ bin/bridgetown apply https://github.com/bridgetownrb/bridgetown-activerecord
 Or for a fully manual setup:
 
 ```shell
-$ bundle add bridgetown-activerecord -g bridgetown_plugins
+$ bundle add bridgetown-activerecord
 ```
 
 then replicate the individual steps outlined in the [automation script](https://github.com/bridgetownrb/bridgetown-activerecord/blob/main/bridgetown.automation.rb).
@@ -23,6 +23,8 @@ You will need to decide on your database adapter of choice. For a typical Postgr
 ```shell
 $ bundle add pg
 ```
+
+When deploying to production, the `DATABASE_URL` ENV var will need to be set with the appropriate connection string…many hosting services will do this for you automatically.
 
 ## Usage
 
@@ -92,7 +94,7 @@ $ bin/bridgetown console
 }
 ```
 
-You're ready to roll to take full advantage of ActiveRecord database models in your Bridgetown site!
+You're ready to roll to take full advantage of Active Record database models in your Bridgetown site!
 
 ## Testing
 
