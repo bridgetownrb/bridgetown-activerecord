@@ -98,6 +98,17 @@ $ bin/bridgetown console
 
 You're ready to roll to take full advantage of Active Record database models in your Bridgetown site!
 
+## Changing the Models Directory
+
+If you'd prefer to set up your models folder elsewhere other than `./models`, you can move the files to another path and then update your Rakefile to pass in that path. For example, you could use the more familiar `app/models`:
+
+```ruby
+require "bridgetown-activerecord"
+BridgetownActiveRecord.load_tasks(models_dir: "app/models")
+```
+
+(Don't forget to update your autoload path in `config/initializers.rb` accordingly.)
+
 ## Testing
 
 * Run `bundle exec rake test` to run the test suite

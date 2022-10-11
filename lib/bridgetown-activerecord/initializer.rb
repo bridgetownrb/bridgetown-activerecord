@@ -6,7 +6,8 @@ require "active_record"
 require "active_support/configuration_file"
 
 module BridgetownActiveRecord
-  def self.load_tasks
+  def self.load_tasks(models_dir: "models")
+    ENV["BRIDGETOWN_ACTIVERECORD_MODELS_DIR"] ||= models_dir
     load File.expand_path("../tasks/database.rake", __dir__)
   end
 

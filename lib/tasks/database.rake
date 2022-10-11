@@ -5,12 +5,12 @@ ENV["SCHEMA"] = File.join(Dir.pwd, "db", "schema.rb")
 require "standalone_migrations"
 StandaloneMigrations::Tasks.load_tasks
 
-require "./models/application_record"
+require "./#{ENV.fetch("BRIDGETOWN_ACTIVERECORD_MODELS_DIR", "models")}/application_record"
 
 # Setup Annotate so it runs on db:migrate, etc.
 if Bridgetown.environment.development?
   require "annotate"
-  ENV["model_dir"] = "models"
+  ENV["model_dir"] = ENV.fetch("BRIDGETOWN_ACTIVERECORD_MODELS_DIR", "models")
   Annotate::Helpers.class_eval do
     # We need to redefine this because our custom model_dir shortcircuits the migration task enhancement
     def self.include_models?
