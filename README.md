@@ -4,6 +4,8 @@ This plugin adds Active Record support to Bridgetown sites (v1.2 or higher). You
 
 ## Installation
 
+> **IMPORTANT NOTE:** there's currently a compatibilty issue between Rails 7 gems and Rack version 3. For now, please add `gem "rack", "~> 2.2"` to your Gemfile _before_ you install this plugin.
+
 It's recommended you run our automation script to set up your project to support Active Record and DB models:
 
 ```shell
