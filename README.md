@@ -1,6 +1,8 @@
 # Bridgetown Active Record plugin
 
-This plugin adds Active Record support to Bridgetown sites (v1.2 or higher). You can pull data from a database (currently PostgreSQL is officially supported) during a static build or during server requests (or both!) and use many of the features you know and love from Active Record in Rails—including migrations!
+This plugin adds [Active Record](https://guides.rubyonrails.org/active_record_basics.html) support to Bridgetown sites (v1.2 or higher). You can pull data from a database (currently PostgreSQL is officially supported) during a static build or during server requests (or both!) and use many of the features you know and love from Active Record in Rails—including migrations!
+
+In addition, if you also like using the [Sequel gem](https://github.com/jeremyevans/sequel) for your database access, this plugin can support instantiating Sequel with a shared DB connection via the [sequel-activerecord_connection](https://github.com/janko/sequel-activerecord_connection) extension ([see below](#using-with-sequel)).
 
 ## Installation
 
@@ -108,6 +110,28 @@ BridgetownActiveRecord.load_tasks(models_dir: "app/models")
 ```
 
 (Don't forget to update your autoload path in `config/initializers.rb` accordingly.)
+
+## Using with Sequel
+
+To set up [Sequel](https://github.com/jeremyevans/sequel) using the same database connection as Active Record, follow these steps:
+
+First, install the sequel-activerecord_connection gem:
+
+```sh
+bundle add sequel-activerecord_connection
+```
+
+Next, update your configuration in `config/initializers.rb` as follows:
+
+```ruby
+init :"bridgetown-activerecord", sequel_support: :postgres # or mysql2 or sqlite3
+```
+
+Now you should be able to call `DB` to access the Sequel API anywhere in your Bridgetown or Roda code:
+
+```ruby
+DB.tables # => [:ar_internal_metadata, :schema_migrations, etc.]
+```
 
 ## Testing
 
