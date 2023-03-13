@@ -29,5 +29,5 @@ Bridgetown.initializer :"bridgetown-activerecord" do |config, sequel_support: ni
   next unless sequel_support
 
   require "sequel"
-  DB = Sequel.send(sequel_support, extensions: :activerecord_connection)
+  DB = Sequel.send(sequel_support, extensions: :activerecord_connection) # rubocop:disable Lint/ConstantDefinitionInBlock
 end
