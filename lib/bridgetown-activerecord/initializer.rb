@@ -20,9 +20,14 @@ module BridgetownActiveRecord
   end
 end
 
-Bridgetown.initializer :"bridgetown-activerecord" do |config|
+Bridgetown.initializer :"bridgetown-activerecord" do |config, sequel_support: nil|
   ActiveRecord::Base.establish_connection(
     BridgetownActiveRecord.db_configuration(config)[Bridgetown.environment]
   )
   ActiveRecord::Base.logger = BridgetownActiveRecord.log_writer
+
+  next unless sequel_support
+
+  require "sequel"
+  DB = Sequel.send(sequel_support, extensions: :activerecord_connection)
 end

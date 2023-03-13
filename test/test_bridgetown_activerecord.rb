@@ -28,6 +28,7 @@ class TestBridgetownActiverecord < Bridgetown::TestCase
 
     should "connect to the database" do
       assert_includes @contents, "ActiveRecord::ConnectionAdapters::PostgreSQLAdapter"
+      assert_equal "#<Sequel::Postgres::Database: {:adapter=>:postgres, :extensions=>:activerecord_connection}>", DB.inspect
     end
   end
 end
